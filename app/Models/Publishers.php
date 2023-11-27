@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Publishers extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'self_link'];
+
+    protected $table = 'publishers';
+
 }
