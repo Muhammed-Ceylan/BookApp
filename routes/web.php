@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\indexController;
+use App\Http\Controllers\admin\publisher\publisherIndexController as PublisherIndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['namespace' => 'admin', 'prefix' => 'admin', 'as' => 'admin'], function () {
-    Route::get('/', [indexController::class, 'index']);
+Route::group(['namespace' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', [indexController::class, 'index'])->name('index');
+
+    Route::group(['namespace' => 'publisher', 'prefix' => 'publisher', 'as' => 'publisher.'], function () {
+        Route::get('/', [PublisherIndexController::class, 'index'])->name('index');
+        Route::get('/create', [PublisherIndexController::class, 'create'])->name('create');
+        Route::post('/store', [PublisherIndexController::class, 'store'])->name('store');
+    });
 });
