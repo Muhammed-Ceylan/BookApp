@@ -25,5 +25,8 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         Route::get('/', [PublisherIndexController::class, 'index'])->name('index');
         Route::get('/create', [PublisherIndexController::class, 'create'])->name('create');
         Route::post('/store', [PublisherIndexController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [PublisherIndexController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [PublisherIndexController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [PublisherIndexController::class, 'delete'])->name('delete');
     });
 });
