@@ -28,4 +28,31 @@ class publisherIndexController extends Controller
 
         return redirect()->back()->with($insert ? 'status' : 'error', $insert ? 'Yayın evi eklendi.' : 'Yayın evi eklenemedi.');
     }
+
+    public function edit(int $id)
+    {
+        $data = Publishers::where('id', $id)->get();
+        return view('admin.publisher.edit', ['data' => $data]);
+    }
+
+    public function update(Request $request)
+    {
+        $id = $request->route('id');
+        $data = $request->except('_token');
+        $data['self_link'] = mHelper::permalink($data['name']);
+        $update = Publishers::where('id', $id)->update($data);
+        return redirect()->back()->with($update ? 'status' : 'error', $update ? 'Yayın evi düzenlendi.' : 'Yayın evi düzenlenemedi.');
+    }
+
+    public function delete(int $id)
+    {
+        $data = Publishers::where('id', $id)->count();
+        if ($data != 0) {
+            $delete = Publishers::where('id', $id)->delete();
+            return redirect()->back();
+        } else {
+            return redirect()->back()->with('status', 'Yayın evi silinemedi');
+        }
+
+    }
 }
