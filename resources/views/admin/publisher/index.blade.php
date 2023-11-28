@@ -25,14 +25,18 @@
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">Düzenle</h6>
+                                                    <a href="{{route('admin.publisher.edit',['id'=>$value->id])}}" class="mb-0 text-sm">
+                                                        Düzenle
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">Sil</h6>
+                                                    <a href="{{route('admin.publisher.delete',['id'=>$value->id])}}" class="mb-0 text-sm">
+                                                        Sil
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>
