@@ -50,27 +50,26 @@ class AuthorIndexController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Authors $authors)
+    public function update(Request $request)
     {
         $data = $request->except('_token');
         $data['self_link'] = mHelper::permalink($data['name']);
-        dd($data);
-        $request['image'] = imageUpload::singleUpload(rand(1, 10000), 'author', $request->file('image'));
-        $update = Authors::where('id', $authors->id)->update($data);
+        $data['image'] = imageUpload::singleUpload(rand(1, 10000), 'author', $request->file('image'));
+        $update = Authors::where('id', $request->id)->update($data);
         return redirect()->back()->with($update ? 'status' : 'error', $update ? 'Yazar düzenlendi.' : 'Yazar düzenlenemedi.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Authors $authors)
+    public function delete($id)
     {
-        $data = $authors->where('id', $authors->id)->count();
+        $data = Authors::where('id', $id)->count();
         if ($data != 0) {
-            $delete = $authors->where('id', $authors->id)->delete();
+            $delete = Authors::where('id', $id)->delete();
             return redirect()->back();
         } else {
-            return redirect()->back()->with('status', 'Yayın evi silinemedi');
+            return redirect()->back()->with('status', 'Yazar silinemedi');
         }
     }
 }
