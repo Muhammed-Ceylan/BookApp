@@ -37,10 +37,9 @@ class publisherIndexController extends Controller
 
     public function update(Request $request)
     {
-        $id = $request->route('id');
         $data = $request->except('_token');
         $data['self_link'] = mHelper::permalink($data['name']);
-        $update = Publishers::where('id', $id)->update($data);
+        $update = Publishers::where('id', $request->id)->update($data);
         return redirect()->back()->with($update ? 'status' : 'error', $update ? 'Yayın evi düzenlendi.' : 'Yayın evi düzenlenemedi.');
     }
 
