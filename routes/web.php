@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\author\AuthorIndexController;
 use App\Http\Controllers\admin\book\BookIndexController;
+use App\Http\Controllers\admin\category\CategoriesController;
 use App\Http\Controllers\admin\indexController;
 use App\Http\Controllers\admin\publisher\publisherIndexController;
 use Illuminate\Support\Facades\Route;
@@ -45,5 +46,13 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         Route::get('/edit/{id}', [BookIndexController::class, 'edit'])->name('edit');
         Route::post('/update', [BookIndexController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [BookIndexController::class, 'delete'])->name('delete');
+    });
+    Route::group(['namespace' => 'category', 'prefix' => 'category', 'as' => 'category.'], function () {
+        Route::get('/', [CategoriesController::class, 'index'])->name('index');
+        Route::get('/create', [CategoriesController::class, 'create'])->name('create');
+        Route::post('/store', [CategoriesController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [CategoriesController::class, 'edit'])->name('edit');
+        Route::post('/update', [CategoriesController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [CategoriesController::class, 'delete'])->name('delete');
     });
 });
