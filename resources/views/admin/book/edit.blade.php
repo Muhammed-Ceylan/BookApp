@@ -46,6 +46,20 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group m-2">
+                <strong>Kategori</strong>
+                <select name="category_id" class="form-control custom-select">
+                    <option value="{{$data[0]['category']}}">Kategori Seçin</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}"
+                                @if($category->id == $data[0]['category_id'])
+                                    selected
+                            @endif>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         <div class="input-group input-group-outline my-3">
 

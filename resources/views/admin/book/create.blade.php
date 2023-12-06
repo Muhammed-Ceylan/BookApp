@@ -40,6 +40,17 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group m-2">
+                <strong>Yayın Evi</strong>
+                <select name="category_id" class="form-control custom-select">
+                    <option value="">Kategori Seçin</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}"
+                                @if($category->id) selected @endif>{{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         <div class="input-group input-group-outline my-3">
 

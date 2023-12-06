@@ -7,6 +7,7 @@ use App\Helper\mHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Authors;
 use App\Models\Books;
+use App\Models\Categories;
 use App\Models\Publishers;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class BookIndexController extends Controller
     {
         $authors = Authors::all();
         $publishers = Publishers::all();
-        return view('admin.book.create', compact('authors', 'publishers'));
+        $categories = Categories::all();
+        return view('admin.book.create', compact(['authors', 'publishers', 'categories']));
     }
 
     public function edit($id)
@@ -30,7 +32,8 @@ class BookIndexController extends Controller
         $data = Books::where('id', $id)->get();
         $authors = Authors::all();
         $publishers = Publishers::all();
-        return view('admin.book.edit', ['data' => $data], compact('authors', 'publishers'));
+        $categories = Categories::all();
+        return view('admin.book.edit', ['data' => $data], compact(['authors', 'publishers','categories']));
     }
 
     public function store(Request $request)
