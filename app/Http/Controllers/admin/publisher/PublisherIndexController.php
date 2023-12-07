@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Publishers;
 use Illuminate\Http\Request;
 
-class publisherIndexController extends Controller
+class PublisherIndexController extends Controller
 {
     public function index()
     {
