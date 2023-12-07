@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\book\BookIndexController;
 use App\Http\Controllers\admin\category\CategoriesController;
 use App\Http\Controllers\admin\indexController;
 use App\Http\Controllers\admin\publisher\publisherIndexController;
+use App\Http\Controllers\admin\slider\sliderIndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,5 +53,13 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
         Route::get('/edit/{id}', [CategoriesController::class, 'edit'])->name('edit');
         Route::post('/update', [CategoriesController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [CategoriesController::class, 'delete'])->name('delete');
+    });
+    Route::group(['namespace' => 'slider', 'prefix' => 'slider', 'as' => 'slider.'], function () {
+        Route::get('/', [SliderIndexController::class, 'index'])->name('index');
+        Route::get('/create', [SliderIndexController::class, 'create'])->name('create');
+        Route::post('/store', [SliderIndexController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [SliderIndexController::class, 'edit'])->name('edit');
+        Route::post('/update', [SliderIndexController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [SliderIndexController::class, 'delete'])->name('delete');
     });
 });
