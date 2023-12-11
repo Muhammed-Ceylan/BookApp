@@ -20,4 +20,14 @@ class Authors extends Model
     {
         return $this->hasMany(Books::class, 'author_id', 'id');
     }
+    static function getField($id, $field)
+    {
+        $author_count = Authors::where('id', $id)->count();
+        if ($author_count != 0) {
+            $author = Authors::where('id', $id)->get();
+            return $author[0][$field];
+        } else {
+            return '--';
+        }
+    }
 }

@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\front\indexController::class, 'index'])->name('index');
+Route::get('/book/edit/{self_link}', [\App\Http\Controllers\front\book\IndexController::class, 'index'])->name('book.edit');
+
 Route::group(['namespace' => 'admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [indexController::class, 'index'])->name('index');
     Route::group(['namespace' => 'publisher', 'prefix' => 'publisher', 'as' => 'publisher.'], function () {
